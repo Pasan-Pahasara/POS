@@ -73,8 +73,11 @@ public class ManageCustomersFormController {
         /*Get all customers*/
         try {
 
+            //Loos Coupling
+            //No DI
             CustomerDAO customerDAO = new CustomerDAOImpl();
             ArrayList<CustomerDTO> allCustomers = customerDAO.getAllCustomers();
+
 
             for (CustomerDTO customer : allCustomers) {
                 tblCustomers.getItems().add(new CustomerTM(customer.getId(), customer.getName(), customer.getAddress()));
@@ -149,7 +152,10 @@ public class ManageCustomersFormController {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
 
-                CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+                //Tight Coupling
+                //No DI
+                //Boilerplate Code
+                CustomerDAO customerDAO = new CustomerDAOImpl();
                 customerDAO.saveCustomer(new CustomerDTO(id, name, address));
 
                 tblCustomers.getItems().add(new CustomerTM(id, name, address));
@@ -168,7 +174,10 @@ public class ManageCustomersFormController {
                 }
 
                 //Customer update
-                CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+                //Tight Coupling
+                //No DI
+                //Boilerplate Code
+                CustomerDAO customerDAO  = new CustomerDAOImpl();
                 customerDAO.updateCustomer(new CustomerDTO(id, name, address));
 
 
@@ -189,7 +198,7 @@ public class ManageCustomersFormController {
 
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+        CustomerDAO customerDAO  = new CustomerDAOImpl();
         return customerDAO.existCustomer(id);
     }
 
@@ -202,7 +211,10 @@ public class ManageCustomersFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
 
-            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            //Tight Coupling
+            //No DI
+            //Boilerplate Code
+            CustomerDAO customerDAO = new CustomerDAOImpl();
             customerDAO.deleteCustomer(id);
 
             tblCustomers.getItems().remove(tblCustomers.getSelectionModel().getSelectedItem());
@@ -219,7 +231,10 @@ public class ManageCustomersFormController {
     private String generateNewId() {
         try {
 
-            CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+            //Tight Coupling
+            //No DI
+            //Boilerplate Code
+            CustomerDAO customerDAO  = new CustomerDAOImpl();
             return customerDAO.generateNewID();
 
         } catch (SQLException e) {

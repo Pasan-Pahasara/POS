@@ -9,11 +9,11 @@ import java.sql.SQLException;
  * @since : 0.1.0
  **/
 public class DBConnection {
-    private static DBConnection dbConnection=null;
+    private static DBConnection dbConnection;
     private final Connection connection;
 
     private DBConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
     }
 
