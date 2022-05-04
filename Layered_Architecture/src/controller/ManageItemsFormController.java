@@ -40,6 +40,7 @@ public class ManageItemsFormController {
     public TableView<ItemTM> tblItems;
     public JFXTextField txtUnitPrice;
     public JFXButton btnAddNewItem;
+    private final ItemDAO itemDAO = new ItemDAOImpl();
 
     public void initialize() {
         tblItems.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -75,11 +76,7 @@ public class ManageItemsFormController {
         tblItems.getItems().clear();
         try {
             /*Get all items*/
-
             //Loos Coupling
-            //No DI
-            //Boilerplate Code
-            ItemDAO itemDAO = new ItemDAOImpl();
             ArrayList<ItemDTO> allItems = itemDAO.getAllItems();
 
             for (ItemDTO item : allItems) {
@@ -143,9 +140,6 @@ public class ManageItemsFormController {
             }
 
             //Loos Coupling
-            //No DI
-            //Boilerplate Code
-            ItemDAO itemDAO = new ItemDAOImpl();
             itemDAO.deleteItem(code);
 
             tblItems.getItems().remove(tblItems.getSelectionModel().getSelectedItem());
@@ -187,9 +181,6 @@ public class ManageItemsFormController {
                 }
                 //Save Item
                 //Loos Coupling
-                //No DI
-                //Boilerplate Code
-                ItemDAO itemDAO = new ItemDAOImpl();
                 itemDAO.addItem(new ItemDTO(code, description, unitPrice, qtyOnHand));
 
                 tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
@@ -207,9 +198,6 @@ public class ManageItemsFormController {
                 }
                 /*Update Item*/
                 //Loos Coupling
-                //No DI
-                //Boilerplate Code
-                ItemDAO itemDAO = new ItemDAOImpl();
                 itemDAO.updateItem(new ItemDTO(code, description, unitPrice, qtyOnHand));
 
                 ItemTM selectedItem = tblItems.getSelectionModel().getSelectedItem();
@@ -230,9 +218,6 @@ public class ManageItemsFormController {
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
         //Loos Coupling
-        //No DI
-        //Boilerplate Code
-        ItemDAO itemDAO = new ItemDAOImpl();
         return itemDAO.existItem(code);
     }
 
@@ -240,9 +225,6 @@ public class ManageItemsFormController {
     private String generateNewId() {
         try {
             //Loos Coupling
-            //No DI
-            //Boilerplate Code
-            ItemDAO itemDAO = new ItemDAOImpl();
             return itemDAO.generateNewId();
 
 
