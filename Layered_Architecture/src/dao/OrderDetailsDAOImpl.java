@@ -1,6 +1,7 @@
 package dao;
 
 import model.CustomerDTO;
+import model.OrderDetailDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,31 +10,31 @@ import java.util.ArrayList;
  * @author : Sanu Vithanage
  * @since : 0.1.0
  **/
-public class OrderDetailsDAOImpl implements CrudDAO {
+public class OrderDetailsDAOImpl implements CrudDAO<OrderDetailDTO,String> {
 
 
     @Override
-    public ArrayList<Object> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<OrderDetailDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean save(Object dto) throws SQLException, ClassNotFoundException {
+    public boolean save(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean update(Object dto) throws SQLException, ClassNotFoundException {
+    public boolean update(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean exist(Object id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String s) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean delete(Object id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String s) throws SQLException, ClassNotFoundException {
         return false;
     }
 
