@@ -76,7 +76,7 @@ public class ManageCustomersFormController {
         try {
 
             //Loos Coupling
-            ArrayList<CustomerDTO> allCustomers = customerDAO.getAllCustomers();
+            ArrayList<CustomerDTO> allCustomers = customerDAO.getAll();
 
 
             for (CustomerDTO customer : allCustomers) {
@@ -153,7 +153,8 @@ public class ManageCustomersFormController {
                 }
 
                 //Loos Coupling
-                customerDAO.saveCustomer(new CustomerDTO(id, name, address));
+//                customerDAO.save(new CustomerDTO(id, name, address));
+                customerDAO.save("");
 
                 tblCustomers.getItems().add(new CustomerTM(id, name, address));
             } catch (SQLException e) {
