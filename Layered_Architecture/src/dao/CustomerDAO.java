@@ -2,6 +2,7 @@ package dao;
 
 import model.CustomerDTO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -9,5 +10,5 @@ import java.util.ArrayList;
  * @since : 0.1.0
  **/
 public interface CustomerDAO extends CrudDAO<CustomerDTO,String> {
-    public ArrayList<CustomerDTO> getAllCustomersByAddress(String address);
+    public ArrayList<CustomerDTO> getAllCustomersByAddress(String address)throws ClassNotFoundException, SQLException;
 }

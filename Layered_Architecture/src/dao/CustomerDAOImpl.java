@@ -48,7 +48,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public ArrayList<CustomerDTO> getAllCustomersByAddress(String address) {
+    public ArrayList<CustomerDTO> getAllCustomersByAddress(String address) throws SQLException, ClassNotFoundException  {
         return null;
     }
 
