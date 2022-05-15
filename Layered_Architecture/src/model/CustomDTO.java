@@ -28,7 +28,7 @@ public class CustomDTO {
     public CustomDTO() {
     }
 
-    public CustomDTO(BigDecimal unitPrice, LocalDate orderDate, String customerId, String oid, String itemCode, int qty) {
+    public CustomDTO(String oid, LocalDate orderDate, String customerId, String itemCode, int qty, BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
         this.orderDate = orderDate;
         this.customerId = customerId;
