@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 public class SQLUtil {

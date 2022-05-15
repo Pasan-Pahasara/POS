@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 

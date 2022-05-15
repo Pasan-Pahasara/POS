@@ -3,7 +3,7 @@ package view.tdm;
 import java.io.Serializable;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 

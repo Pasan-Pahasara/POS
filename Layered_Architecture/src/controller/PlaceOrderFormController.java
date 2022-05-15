@@ -34,7 +34,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 
@@ -316,7 +316,7 @@ public class PlaceOrderFormController {
 
     public void btnPlaceOrder_OnAction(ActionEvent actionEvent) {
         boolean b = saveOrder(orderId, LocalDate.now(), cmbCustomerId.getValue(),
-                tblOrderDetails.getItems().stream().map(tm -> new OrderDetailDTO(tm.getCode(), tm.getQty(), tm.getUnitPrice())).collect(Collectors.toList()));
+                tblOrderDetails.getItems().stream().map(tm -> new OrderDetailDTO(orderId,tm.getCode(), tm.getQty(), tm.getUnitPrice())).collect(Collectors.toList()));
 
         if (b) {
             new Alert(Alert.AlertType.INFORMATION, "Order has been placed successfully").show();
@@ -335,8 +335,10 @@ public class PlaceOrderFormController {
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
         /*Transaction*/
-        Connection connection = null;
+
         try {
+            Connection connection = DBConnection.getDbConnection().getConnection();
+
             //DI
             CrudDAO<OrderDTO,String> orderDAO = new OrderDAOImpl();
             /*if order id already exist*/
@@ -357,6 +359,7 @@ public class PlaceOrderFormController {
             }
 
             CrudDAO<OrderDetailDTO,String> orderDetailsDAO = new OrderDetailsDAOImpl();
+            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
 
             for (OrderDetailDTO detail : orderDetails) {
                 boolean save1 = orderDetailsDAO.save(detail);
@@ -373,8 +376,8 @@ public class PlaceOrderFormController {
 
                 //update item
                 //DI
-                CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
-                boolean update = itemDAO.update(new ItemDTO(item.getCode(), item.getDescription(), item.getUnitPrice(), item.getQtyOnHand()));
+                System.out.println(item.toString());
+                boolean update = itemDAO.update(item);
 
                 if (!update) {
                     connection.rollback();

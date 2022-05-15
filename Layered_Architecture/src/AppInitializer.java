@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 

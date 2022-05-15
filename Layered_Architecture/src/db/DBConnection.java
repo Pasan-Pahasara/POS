@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 public class DBConnection {
@@ -20,7 +20,6 @@ public class DBConnection {
     public static DBConnection getDbConnection() throws SQLException, ClassNotFoundException {
         return dbConnection == null ? dbConnection= new DBConnection() : dbConnection;
     }
-
 
     public Connection getConnection() {
         return connection;

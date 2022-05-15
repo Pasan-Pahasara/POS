@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author : Sanu Vithanage
+ * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
 
