@@ -7,8 +7,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author :  * @since : 0.1.0
+ * @author : Pasan Pahasara
+ * @since : 0.1.0
  **/
+
 
 public class AppInitializer extends Application {
     public static void main(String[] args) {
@@ -26,3 +28,4 @@ public class AppInitializer extends Application {
     }
 
 }
+
