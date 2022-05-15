@@ -7,8 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author : Pasan Pahasara
- * @since : 0.1.0
+ * @author :  * @since : 0.1.0
  **/
 
 public class AppInitializer extends Application {
@@ -25,4 +24,5 @@ public class AppInitializer extends Application {
         primaryStage.centerOnScreen();
         primaryStage.show();
     }
+
 }
