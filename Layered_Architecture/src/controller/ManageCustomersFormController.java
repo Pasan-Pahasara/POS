@@ -1,9 +1,8 @@
 package controller;
 
+import bo.CustomerBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.custom.CustomerDAO;
-import dao.custom.impl.CustomerDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +32,7 @@ import java.util.List;
 
 public class ManageCustomersFormController {
     //Property Injection (DI)
-    private final CustomerDAO customerDAO = new CustomerDAOImpl();
+
     public AnchorPane root;
     public JFXTextField txtCustomerName;
     public JFXTextField txtCustomerId;
@@ -77,8 +76,9 @@ public class ManageCustomersFormController {
         try {
 
             //Loos Coupling
-            ArrayList<CustomerDTO> allCustomers = customerDAO.getAll();
-
+            //DI
+            CustomerBOImpl customerBO = new CustomerBOImpl();
+            ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers();
 
             for (CustomerDTO customer : allCustomers) {
                 tblCustomers.getItems().add(new CustomerTM(customer.getId(), customer.getName(), customer.getAddress()));
@@ -154,7 +154,9 @@ public class ManageCustomersFormController {
                 }
 
                 //Loos Coupling
-                customerDAO.save(new CustomerDTO(id, name, address));
+                //DI
+                CustomerBOImpl customerBO = new CustomerBOImpl();
+                customerBO.saveCustomer(new CustomerDTO(id, name, address));
 
 
                 tblCustomers.getItems().add(new CustomerTM(id, name, address));
@@ -176,8 +178,9 @@ public class ManageCustomersFormController {
 
                 //Customer update
                 //Loos Coupling
-                customerDAO.update(new CustomerDTO(id, name, address));
-
+                //DI
+                CustomerBOImpl customerBO = new CustomerBOImpl();
+                customerBO.updateCustomer(new CustomerDTO(id, name, address));
 
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + id + e.getMessage()).show();
@@ -196,7 +199,10 @@ public class ManageCustomersFormController {
 
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.exist(id);
+        //Loos coupling
+        //DI
+        CustomerBOImpl customerBO = new CustomerBOImpl();
+        return customerBO.customerExist(id);
     }
 
 
@@ -209,7 +215,9 @@ public class ManageCustomersFormController {
             }
 
             //Loos Coupling
-            customerDAO.delete(id);
+            //DI
+            CustomerBOImpl customerBO = new CustomerBOImpl();
+            customerBO.deleteCustomer(id);
 
             tblCustomers.getItems().remove(tblCustomers.getSelectionModel().getSelectedItem());
             tblCustomers.getSelectionModel().clearSelection();
@@ -226,7 +234,9 @@ public class ManageCustomersFormController {
         try {
 
             //Loos Coupling
-            return customerDAO.generateNewID();
+            //DI
+            CustomerBOImpl customerBO = new CustomerBOImpl();
+            return customerBO.generateNewCustomerID();
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
