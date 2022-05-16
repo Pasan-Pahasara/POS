@@ -1,5 +1,6 @@
-package bo;
+package bo.custom.impl;
 
+import bo.custom.ItemBO;
 import dao.custom.ItemDAO;
 import dao.custom.impl.ItemDAOImpl;
 import model.ItemDTO;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
  * @since : 0.1.0
  **/
 public class ItemBOImpl implements ItemBO {
+
     private final ItemDAO itemDAO = new ItemDAOImpl();
 
     @Override

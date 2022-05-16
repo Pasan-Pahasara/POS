@@ -1,5 +1,6 @@
-package bo;
+package bo.custom.impl;
 
+import bo.custom.CustomerBO;
 import dao.custom.CustomerDAO;
 import dao.custom.impl.CustomerDAOImpl;
 import model.CustomerDTO;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
  **/
 
 public class CustomerBOImpl implements CustomerBO {
+
     private final CustomerDAO customerDAO = new CustomerDAOImpl();
 
     @Override

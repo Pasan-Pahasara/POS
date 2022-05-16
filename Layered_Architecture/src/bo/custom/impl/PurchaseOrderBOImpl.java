@@ -1,5 +1,6 @@
-package bo;
+package bo.custom.impl;
 
+import bo.custom.PurchaseOrderBO;
 import dao.custom.*;
 import dao.custom.impl.*;
 import db.DBConnection;
@@ -20,11 +21,13 @@ import java.util.List;
  **/
 public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
+    // Exposed the object creation logic
     private final CustomerDAO customerDAO = new CustomerDAOImpl();
     private final ItemDAO itemDAO = new ItemDAOImpl();
     private final OrderDAO orderDAO = new OrderDAOImpl();
     private final OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
     private final QueryDAO queryDAO = new QueryDAOImpl();
+
 
     @Override
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
@@ -52,12 +55,10 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             }
 
             //Search & Update Item
-            //ItemDTO item = findItem(detail.getItemCode());
-            ItemDTO item = null;
+            ItemDTO item = searchItem(detail.getItemCode());
             item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
             //update item
-            System.out.println(item);
             boolean update = itemDAO.update(item);
 
             if (!update) {
