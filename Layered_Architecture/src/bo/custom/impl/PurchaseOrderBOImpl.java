@@ -29,6 +29,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
     private final QueryDAO queryDAO = new QueryDAOImpl();
 
 
+
     @Override
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
         /*Transaction*/
