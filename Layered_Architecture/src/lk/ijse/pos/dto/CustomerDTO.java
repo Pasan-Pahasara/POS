@@ -6,6 +6,7 @@ import java.io.Serializable;
  * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
+
 public class CustomerDTO implements Serializable {
     private String id;
     private String name;

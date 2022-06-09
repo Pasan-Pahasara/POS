@@ -1,6 +1,5 @@
 package lk.ijse.pos.view.tdm;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
