@@ -8,7 +8,6 @@ import bo.custom.impl.PurchaseOrderBOImpl;
  * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
-
 public class BOFactory {
     private static BOFactory boFactory;
 

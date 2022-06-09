@@ -4,10 +4,13 @@ import bo.custom.PurchaseOrderBO;
 import dao.DAOFactory;
 import dao.custom.*;
 import db.DBConnection;
-import model.CustomerDTO;
-import model.ItemDTO;
-import model.OrderDTO;
-import model.OrderDetailDTO;
+import dto.CustomerDTO;
+import dto.ItemDTO;
+import dto.OrderDTO;
+import dto.OrderDetailDTO;
+import entity.Item;
+import entity.OrderDetails;
+import entity.Orders;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +22,6 @@ import java.util.List;
  * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
-
 public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     //Hiding the object creation logic using the Factory pattern
@@ -38,16 +40,16 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
 
     @Override
-    public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
+    public boolean purchaseOrder(OrderDTO dto) throws SQLException, ClassNotFoundException {
 
         /*Transaction*/
         Connection connection = DBConnection.getDbConnection().getConnection();
         /*if order id already exist*/
-        if (orderDAO.exist(orderId)) {
+        if (orderDAO.exist(dto.getOrderId())) {
 
         }
         connection.setAutoCommit(false);
-        boolean save = orderDAO.save(new OrderDTO(orderId, orderDate, customerId));
+        boolean save = orderDAO.save(new Orders(dto.getOrderId(), dto.getOrderDate(), dto.getCustomerId()));
 
         if (!save) {
             connection.rollback();
@@ -55,8 +57,8 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             return false;
         }
 
-        for (OrderDetailDTO detail : orderDetails) {
-            boolean save1 = orderDetailsDAO.save(detail);
+        for (OrderDetailDTO detailDTO : dto.getOrderDetails()) {
+            boolean save1 = orderDetailsDAO.save(new OrderDetails(detailDTO.getOid(),detailDTO.getItemCode(),detailDTO.getQty(),detailDTO.getUnitPrice()));
             if (!save1) {
                 connection.rollback();
                 connection.setAutoCommit(true);
@@ -64,11 +66,11 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             }
 
             //Search & Update Item
-            ItemDTO item = searchItem(detail.getItemCode());
-            item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
+            ItemDTO item = searchItem(detailDTO.getItemCode());
+            item.setQtyOnHand(item.getQtyOnHand() - detailDTO.getQty());
 
             //update item
-            boolean update = itemDAO.update(item);
+            boolean update = itemDAO.update(new Item(item.getCode(),item.getDescription(),item.getQtyOnHand(),item.getUnitPrice()));
 
             if (!update) {
                 connection.rollback();

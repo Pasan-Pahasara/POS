@@ -1,30 +1,21 @@
-package model;
+package entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
-
-public class OrderDetailDTO implements Serializable {
-
+public class OrderDetails {
     private String oid;
     private String itemCode;
     private int qty;
     private BigDecimal unitPrice;
 
-    public OrderDetailDTO() {
+    public OrderDetails() {
     }
 
-    public OrderDetailDTO(String itemCode, int qty, BigDecimal unitPrice) {
-        this.itemCode = itemCode;
-        this.qty = qty;
-        this.unitPrice = unitPrice;
-    }
-
-    public OrderDetailDTO(String oid, String itemCode, int qty, BigDecimal unitPrice) {
+    public OrderDetails(String oid, String itemCode, int qty, BigDecimal unitPrice) {
         this.oid = oid;
         this.itemCode = itemCode;
         this.qty = qty;
@@ -61,16 +52,5 @@ public class OrderDetailDTO implements Serializable {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("OrderDetailDTO{");
-        sb.append("oid='").append(oid).append('\'');
-        sb.append(", itemCode='").append(itemCode).append('\'');
-        sb.append(", qty=").append(qty);
-        sb.append(", unitPrice=").append(unitPrice);
-        sb.append('}');
-        return sb.toString();
     }
 }

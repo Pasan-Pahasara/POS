@@ -1,7 +1,7 @@
 package bo.custom;
 
 import bo.SuperBO;
-import model.ItemDTO;
+import dto.ItemDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
-
 public interface ItemBO extends SuperBO {
     ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException;
 

@@ -1,7 +1,8 @@
 package dao.custom;
 
 import dao.CrudDAO;
-import model.ItemDTO;
+import dto.ItemDTO;
+import entity.Item;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +11,6 @@ import java.util.ArrayList;
  * @author : Pasan Pahasara
  * @since : 0.1.0
  **/
-public interface ItemDAO extends CrudDAO<ItemDTO,String> {
-    public ArrayList<ItemDTO> getItemFromPrice(double price)throws ClassNotFoundException, SQLException;
+public interface ItemDAO extends CrudDAO<Item,String> {
+    public ArrayList<Item> getItemFromPrice(double price)throws ClassNotFoundException, SQLException;
 }

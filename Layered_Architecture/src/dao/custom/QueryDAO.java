@@ -1,8 +1,7 @@
 package dao.custom;
 
-import dao.CrudDAO;
 import dao.SuperDAO;
-import model.CustomDTO;
+import dto.CustomDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
