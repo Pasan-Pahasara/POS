@@ -1,8 +1,8 @@
 package bo.custom.impl;
 
 import bo.custom.ItemBO;
+import dao.DAOFactory;
 import dao.custom.ItemDAO;
-import dao.custom.impl.ItemDAOImpl;
 import model.ItemDTO;
 
 import java.sql.SQLException;
@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * @since : 0.1.0
  **/
 public class ItemBOImpl implements ItemBO {
-
-    private final ItemDAO itemDAO = new ItemDAOImpl();
+    private final ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+//    private final ItemDAO itemDAO = new ItemDAOImpl();
 
     @Override
     public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
