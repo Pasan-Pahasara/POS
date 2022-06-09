@@ -11,7 +11,6 @@ import java.io.IOException;
  * @since : 0.1.0
  **/
 
-
 public class AppInitializer extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -19,7 +18,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("/view/main-form.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/main-form.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Java FX POS");
@@ -27,15 +26,3 @@ public class AppInitializer extends Application {
         primaryStage.show();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
